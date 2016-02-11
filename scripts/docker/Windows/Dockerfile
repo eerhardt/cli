@@ -46,7 +46,8 @@ FROM windowsservercore
 # Set user to the one we just created
 #USER ${USER_ID}
 
-RUN powershell.exe invoke-webrequest https://github.com/git-for-windows/git/releases/download/v2.7.1.windows.1/Git-2.7.1-64-bit.exe -Outfile c:\git.exe
+# Install Git
+RUN powershell.exe invoke-webrequest https://github.com/git-for-windows/git/releases/download/v2.7.1.windows.1/Git-2.7.1-64-bit.exe -Outfile c:\git.exe
 RUN C:\git.exe /SILENT /COMPONENTS="icons,ext\reg\shellhere,assoc,assoc_sh"
 RUN DEL C:\git.exe
 
