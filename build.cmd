@@ -6,4 +6,10 @@ REM Licensed under the MIT license. See LICENSE file in the project root for ful
 REM Crossgen Workaround
 set ComPlus_ReadyToRun=0
 
-powershell -NoProfile -NoLogo -Command "%~dp0scripts\run-build.ps1 %*; exit $LastExitCode;"
+IF DEFINED CI_BUILD (
+	set scriptFile=docker\dockerbuild.ps1
+) ELSE (
+	set scriptFile=build\run-build.ps1
+)
+
+powershell -NoProfile -NoLogo -Command "%~dp0scripts\%scriptFile% %*; exit $LastExitCode;"
