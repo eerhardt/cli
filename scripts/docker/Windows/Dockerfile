@@ -51,8 +51,17 @@ RUN powershell.exe invoke-webrequest https://github.com/git-for-windows/git/rele
 RUN C:\git.exe /SILENT /COMPONENTS="icons,ext\reg\shellhere,assoc,assoc_sh"
 RUN DEL C:\git.exe
 
-RUN dir "c:\Program Files\Git\cmd"
-RUN setx /M PATH "%PATH%;c:\Program Files\Git\cmd"
+# Install CMake
+RUN powershell.exe invoke-webrequest https://cmake.org/files/v3.4/cmake-3.4.3-win32-x86.exe -Outfile c:\cmake.exe
+RUN C:\cmake.exe /S /D "C:\Program Files\CMake"
+RUN DEL C:\cmake.exe
+
+
+
+ENV PATH "C:\Program Files\Git\cmd;C:\Program Files\CMake"
 
 # Set working directory
 WORKDIR /opt/code
+
+
+
