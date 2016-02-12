@@ -53,12 +53,10 @@ RUN DEL C:\git.exe
 
 # Install CMake
 RUN powershell.exe invoke-webrequest https://cmake.org/files/v3.4/cmake-3.4.3-win32-x86.exe -Outfile c:\cmake.exe
-RUN C:\cmake.exe /S /D "C:\Program Files\CMake"
+RUN C:\cmake.exe /S
 RUN DEL C:\cmake.exe
 
-
-
-ENV PATH "C:\Program Files\Git\cmd;C:\Program Files\CMake"
+ENV PATH "C:\Program Files\Git\cmd;C:\Program Files (x86)\CMake\bin"
 
 # Set working directory
 WORKDIR /opt/code
