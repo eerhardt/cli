@@ -58,28 +58,28 @@ RUN C:\cmake.exe /S
 RUN DEL C:\cmake.exe
 
 #Install MSBuild build tools
-RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/E/E/D/EEDF18A8-4AED-4CE0-BEBE-70A83094FC5A/BuildTools_Full.exe -Outfile c:\BuildTools.exe
-RUN powershell.exe Start-Process C:\BuildTools.exe -ArgumentList ('/q') -Wait
-RUN DEL C:\BuildTools.exe
+#RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/E/E/D/EEDF18A8-4AED-4CE0-BEBE-70A83094FC5A/BuildTools_Full.exe -Outfile c:\BuildTools.exe
+#RUN powershell.exe Start-Process C:\BuildTools.exe -ArgumentList ('/q') -Wait
+#RUN DEL C:\BuildTools.exe
 
 #Install C++ 32-bit Redist
-RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/C/E/5/CE514EAE-78A8-4381-86E8-29108D78DBD4/VC_redist.x86.exe -Outfile c:\VC_redist.x86.exe
-RUN powershell.exe Start-Process C:\VC_redist.x86.exe -ArgumentList ('/q') -Wait
-RUN DEL C:\VC_redist.x86.exe
+#RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/C/E/5/CE514EAE-78A8-4381-86E8-29108D78DBD4/VC_redist.x86.exe -Outfile c:\VC_redist.x86.exe
+#RUN powershell.exe Start-Process C:\VC_redist.x86.exe -ArgumentList ('/q') -Wait
+#RUN DEL C:\VC_redist.x86.exe
 
 #Install C++ 64-bit Redist
-RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/C/E/5/CE514EAE-78A8-4381-86E8-29108D78DBD4/VC_redist.x64.exe -Outfile c:\VC_redist.x64.exe
-RUN powershell.exe Start-Process C:\VC_redist.x64.exe -ArgumentList ('/q') -Wait
-RUN DEL C:\VC_redist.x64.exe
+#RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/C/E/5/CE514EAE-78A8-4381-86E8-29108D78DBD4/VC_redist.x64.exe -Outfile c:\VC_redist.x64.exe
+#RUN powershell.exe Start-Process C:\VC_redist.x64.exe -ArgumentList ('/q') -Wait
+#RUN DEL C:\VC_redist.x64.exe
 
 
 
 #Install VS 2015 Community Update 1
-#RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/D/2/3/D23F4D0F-BA2D-4600-8725-6CCECEA05196/vs_community_ENU.exe -Outfile c:\vs.exe
-#RUN powershell.exe Start-Process C:\vs.exe -ArgumentList ('/q', '/norestart', '/Full') -Wait
-#RUN DEL C:\vs.exe
+RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/5/7/A/57A99666-126E-42FA-8E70-862EDBADD215/vs_community.exe -Outfile c:\vs.exe
+RUN powershell.exe Start-Process C:\vs.exe -ArgumentList ('/q', '/norestart', '/InstallSelectableItems', 'NativeLanguageSupport_VC') -Wait
+RUN DEL C:\vs.exe
 
-ENV PATH "C:\Program Files\Git\cmd;C:\Program Files (x86)\CMake 2.8\bin"
+ENV PATH "C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files (x86)\CMake 2.8\bin"
 
 # Set working directory
 WORKDIR /opt/code

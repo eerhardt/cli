@@ -4,6 +4,7 @@ cd $REPOROOTsetVarIfDefault "DOTNET_BUILD_CONTAINER_TAG" "dotnetcli-build"
 setVarIfDefault "DOTNET_BUILD_CONTAINER_NAME" "dotnetcli-build-container"
 setVarIfDefault "DOCKER_HOST_SHARE_DIR" "$(Convert-Path .)"
 setVarIfDefault "DOCKER_CONTAINER_SHARE_DIR" "C:\opt\code"
+setVarIfDefault "DOCKER_CONTAINER_NUGET_PACKAGES" "C:\.nuget"
 setVarIfDefault "DOCKER_OS" "Windows"
 setVarIfDefault "BUILD_COMMAND" "/opt/code/scripts/build/build.ps1"
 
@@ -18,6 +19,7 @@ info "Using code from: $DOCKER_HOST_SHARE_DIR"
 docker run -t --rm --sig-proxy=true `
    --name $DOTNET_BUILD_CONTAINER_NAME `
    -v "$DOCKER_HOST_SHARE_DIR\:$DOCKER_CONTAINER_SHARE_DIR" `
+   -v "$env:NUGET_PACKAGES\:$DOCKER_CONTAINER_NUGET_PACKAGES" `
    -e DOTNET_CLI_VERSION `
    -e SASTOKEN `
    -e STORAGE_ACCOUNT `
