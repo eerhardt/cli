@@ -52,7 +52,8 @@ RUN C:\git.exe /SILENT /COMPONENTS="icons,ext\reg\shellhere,assoc,assoc_sh"
 RUN DEL C:\git.exe
 
 # Install CMake
-RUN powershell.exe invoke-webrequest https://cmake.org/files/v3.4/cmake-3.4.3-win32-x86.exe -Outfile c:\cmake.exe
+RUN powershell.exe invoke-webrequest https://cmake.org/files/v2.8/cmake-2.8.12.2-win32-x86.exe -Outfile c:\cmake.exe
+#RUN powershell.exe invoke-webrequest https://cmake.org/files/v3.4/cmake-3.4.3-win32-x86.exe -Outfile c:\cmake.exe
 RUN C:\cmake.exe /S
 RUN DEL C:\cmake.exe
 
