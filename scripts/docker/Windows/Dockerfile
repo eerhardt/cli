@@ -56,10 +56,14 @@ RUN powershell.exe invoke-webrequest https://cmake.org/files/v3.4/cmake-3.4.3-wi
 RUN C:\cmake.exe /S
 RUN DEL C:\cmake.exe
 
-#Install VS 2015 Community with Update 1
-RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/D/2/3/D23F4D0F-BA2D-4600-8725-6CCECEA05196/vs_community_ENU.exe -Outfile c:\vs.exe
-RUN powershell.exe Start-Process C:\vs.exe -ArgumentList ('/q', '/norestart', '/Full') -Wait
-RUN DEL C:\vs.exe
+#Install MSBuild build tools
+RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/E/E/D/EEDF18A8-4AED-4CE0-BEBE-70A83094FC5A/BuildTools_Full.exe -Outfile c:\BuildTools.exe
+RUN powershell.exe Start-Process C:\BuildTools.exe -ArgumentList ('/q', '/norestart', '/Full') -Wait
+RUN DEL C:\BuildTools.exe
+
+#RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/D/2/3/D23F4D0F-BA2D-4600-8725-6CCECEA05196/vs_community_ENU.exe -Outfile c:\vs.exe
+#RUN powershell.exe Start-Process C:\vs.exe -ArgumentList ('/q', '/norestart', '/Full') -Wait
+#RUN DEL C:\vs.exe
 
 ENV PATH "C:\Program Files\Git\cmd;C:\Program Files (x86)\CMake\bin"
 
