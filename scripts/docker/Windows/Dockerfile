@@ -62,7 +62,12 @@ RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/E/E/
 RUN powershell.exe Start-Process C:\BuildTools.exe -ArgumentList ('/q') -Wait
 RUN DEL C:\BuildTools.exe
 
-#Install C++ Redist
+#Install C++ 32-bit Redist
+RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/C/E/5/CE514EAE-78A8-4381-86E8-29108D78DBD4/VC_redist.x86.exe -Outfile c:\VC_redist.x86.exe
+RUN powershell.exe Start-Process C:\VC_redist.x86.exe -ArgumentList ('/q') -Wait
+RUN DEL C:\VC_redist.x86.exe
+
+#Install C++ 64-bit Redist
 RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/C/E/5/CE514EAE-78A8-4381-86E8-29108D78DBD4/VC_redist.x64.exe -Outfile c:\VC_redist.x64.exe
 RUN powershell.exe Start-Process C:\VC_redist.x64.exe -ArgumentList ('/q') -Wait
 RUN DEL C:\VC_redist.x64.exe
