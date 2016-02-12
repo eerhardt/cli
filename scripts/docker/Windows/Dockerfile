@@ -51,7 +51,7 @@ RUN powershell.exe invoke-webrequest https://github.com/git-for-windows/git/rele
 RUN C:\git.exe /SILENT /COMPONENTS="icons,ext\reg\shellhere,assoc,assoc_sh"
 RUN DEL C:\git.exe
 
-RUN echo %PATH%
+RUN dir "c:\Program Files\Git\cmd"
 RUN setx /M PATH "%PATH%;c:\Program Files\Git\cmd"
 
 # Set working directory
