@@ -79,7 +79,7 @@ RUN DEL C:\VC_redist.x64.exe
 #RUN powershell.exe Start-Process C:\vs.exe -ArgumentList ('/q', '/norestart', '/Full') -Wait
 #RUN DEL C:\vs.exe
 
-ENV PATH "C:\Program Files\Git\cmd;C:\Program Files (x86)\CMake\bin"
+ENV PATH "C:\Program Files\Git\cmd;C:\Program Files (x86)\CMake 2.8\bin"
 
 # Set working directory
 WORKDIR /opt/code
