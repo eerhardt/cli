@@ -46,9 +46,14 @@ FROM windowsservercore
 # Set user to the one we just created
 #USER ${USER_ID}
 
+#Install C++ Compilers
+RUN powershell.exe invoke-webrequest https://download.microsoft.com/download/3/8/E/38EE4758-7C31-4D96-8FF9-83CC313F0F78/VisualCppBuildTools_Full.exe -Outfile c:\VisualCppBuildTools_Full.exe
+RUN powershell.exe Start-Process C:\VisualCppBuildTools_Full.exe -ArgumentList ('/q', '/norestart') -Wait
+RUN DEL C:\VisualCppBuildTools_Full.exe
+
 # Install Git
 RUN powershell.exe invoke-webrequest https://github.com/git-for-windows/git/releases/download/v2.7.1.windows.1/Git-2.7.1-64-bit.exe -Outfile c:\git.exe
-RUN C:\git.exe /SILENT /COMPONENTS="icons,ext\reg\shellhere,assoc,assoc_sh"
+RUN powershell.exe Start-Process C:\git.exe -ArgumentList ('/SILENT', '/COMPONENTS="icons,ext\reg\shellhere,assoc,assoc_sh"') -Wait
 RUN DEL C:\git.exe
 
 # Install CMake
@@ -61,12 +66,6 @@ RUN DEL C:\cmake.exe
 #RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/E/E/D/EEDF18A8-4AED-4CE0-BEBE-70A83094FC5A/BuildTools_Full.exe -Outfile c:\BuildTools.exe
 #RUN powershell.exe Start-Process C:\BuildTools.exe -ArgumentList ('/q') -Wait
 #RUN DEL C:\BuildTools.exe
-
-#Install C++ Compilers
-RUN powershell.exe invoke-webrequest https://download.microsoft.com/download/3/8/E/38EE4758-7C31-4D96-8FF9-83CC313F0F78/VisualCppBuildTools_Full.exe -Outfile c:\VisualCppBuildTools_Full.exe
-RUN powershell.exe Start-Process C:\VisualCppBuildTools_Full.exe -ArgumentList ('/q', '/norestart') -Wait
-RUN DEL C:\VisualCppBuildTools_Full.exe
-
 
 
 #Install VS 2015 Community Update 1
