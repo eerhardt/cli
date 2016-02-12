@@ -33,7 +33,7 @@ RUN DEL C:\cmake.exe
 #RUN powershell.exe Start-Process C:\vs.exe -ArgumentList ('/q', '/norestart', '/InstallSelectableItems', 'NativeLanguageSupport_VC') -Wait
 #RUN DEL C:\vs.exe
 
-ENV PATH "C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files (x86)\CMake 2.8\bin"
+ENV PATH "C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files (x86)\CMake\bin"
 
 # Set working directory
 WORKDIR /opt/code
