@@ -57,7 +57,7 @@ RUN C:\cmake.exe /S
 RUN DEL C:\cmake.exe
 
 #Install VS 2015 Community with Update 1
-#RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/D/2/3/D23F4D0F-BA2D-4600-8725-6CCECEA05196/vs_community_ENU.exe -Outfile c:\vs.exe
+RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/D/2/3/D23F4D0F-BA2D-4600-8725-6CCECEA05196/vs_community_ENU.exe -Outfile c:\vs.exe
 #RUN C:\vs.exe /q /norestart /Full
 #RUN DEL C:\vs.exe
  
