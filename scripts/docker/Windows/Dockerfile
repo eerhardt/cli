@@ -21,6 +21,11 @@ RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/5/7/
 RUN powershell.exe Start-Process C:\vs.exe -ArgumentList ('/q', '/norestart', '/InstallSelectableItems', 'NativeLanguageSupport_VC') -Wait
 RUN DEL C:\vs.exe
 
+# Install .NET 3.5
+RUN powershell.exe invoke-webrequest https://download.microsoft.com/download/7/0/3/703455ee-a747-4cc8-bd3e-98a615c3aedb/dotNetFx35setup.exe -Outfile C:\net.exe
+RUN powershell.exe Start-Process C:\net.exe -ArgumentList ('/quiet', '/norestart') -Wait
+RUN DEL C:\net.exe
+
 ENV PATH "C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files (x86)\CMake\bin"
 
 # Set the NUGET_PACKAGES from the build arg
