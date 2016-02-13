@@ -6,32 +6,20 @@
 
 FROM windowsservercore
 
-#Install C++ Compilers
-RUN powershell.exe invoke-webrequest https://download.microsoft.com/download/3/8/E/38EE4758-7C31-4D96-8FF9-83CC313F0F78/VisualCppBuildTools_Full.exe -Outfile c:\VisualCppBuildTools_Full.exe
-RUN powershell.exe Start-Process C:\VisualCppBuildTools_Full.exe -ArgumentList ('/q', '/norestart') -Wait
-RUN DEL C:\VisualCppBuildTools_Full.exe
-
 # Install Git
 RUN powershell.exe invoke-webrequest https://github.com/git-for-windows/git/releases/download/v2.7.1.windows.1/Git-2.7.1-64-bit.exe -Outfile c:\git.exe
-RUN powershell.exe Start-Process C:\git.exe -ArgumentList ('/SILENT', '/COMPONENTS="icons,ext\reg\shellhere,assoc,assoc_sh"') -Wait
+RUN C:\git.exe /SILENT /COMPONENTS="icons,ext\reg\shellhere,assoc,assoc_sh"
 RUN DEL C:\git.exe
 
 # Install CMake
-#RUN powershell.exe invoke-webrequest https://cmake.org/files/v2.8/cmake-2.8.12.2-win32-x86.exe -Outfile c:\cmake.exe
 RUN powershell.exe invoke-webrequest https://cmake.org/files/v3.4/cmake-3.4.3-win32-x86.exe -Outfile c:\cmake.exe
 RUN C:\cmake.exe /S
 RUN DEL C:\cmake.exe
 
-#Install MSBuild build tools
-#RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/E/E/D/EEDF18A8-4AED-4CE0-BEBE-70A83094FC5A/BuildTools_Full.exe -Outfile c:\BuildTools.exe
-#RUN powershell.exe Start-Process C:\BuildTools.exe -ArgumentList ('/q') -Wait
-#RUN DEL C:\BuildTools.exe
-
-
-#Install VS 2015 Community Update 1
-#RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/5/7/A/57A99666-126E-42FA-8E70-862EDBADD215/vs_community.exe -Outfile c:\vs.exe
-#RUN powershell.exe Start-Process C:\vs.exe -ArgumentList ('/q', '/norestart', '/InstallSelectableItems', 'NativeLanguageSupport_VC') -Wait
-#RUN DEL C:\vs.exe
+# Install VS 2015 Community Update 1
+RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/5/7/A/57A99666-126E-42FA-8E70-862EDBADD215/vs_community.exe -Outfile c:\vs.exe
+RUN powershell.exe Start-Process C:\vs.exe -ArgumentList ('/q', '/norestart', '/InstallSelectableItems', 'NativeLanguageSupport_VC') -Wait
+RUN DEL C:\vs.exe
 
 ENV PATH "C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files (x86)\CMake\bin"
 
