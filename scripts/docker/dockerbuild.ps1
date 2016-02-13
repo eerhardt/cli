@@ -10,7 +10,7 @@ setVarIfDefault "BUILD_COMMAND" "/opt/code/scripts/build/build.ps1"
 
 # Build the docker container (will be fast if it is already built)
 header "Building Docker Container"
-docker build -t --build-arg NUGET_CACHE=$DOCKER_CONTAINER_NUGET_PACKAGES $DOTNET_BUILD_CONTAINER_TAG scripts/docker/$DOCKER_OS
+docker build --build-arg NUGET_CACHE=$DOCKER_CONTAINER_NUGET_PACKAGES -t $DOTNET_BUILD_CONTAINER_TAG scripts/docker/$DOCKER_OS
 # --build-arg USER_ID=$(id -u)
 
 # Run the build in the container
