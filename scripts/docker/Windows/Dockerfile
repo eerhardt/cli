@@ -29,6 +29,7 @@ RUN DEL C:\net.exe
 ENV PATH "C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files (x86)\CMake\bin"
 
 # Set the NUGET_PACKAGES from the build arg
+ARG NUGET_CACHE
 ENV NUGET_PACKAGES ${NUGET_CACHE} 
 
 # Set working directory
