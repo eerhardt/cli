@@ -43,17 +43,17 @@ namespace Microsoft.DotNet.Cli.Build
         [Target]
         public static BuildTargetResult GenerateVersions(BuildTargetContext c)
         {
-            var gitResult = Cmd("git", "rev-list", "--count", "HEAD")
-                .CaptureStdOut()
-                .Execute();
-            gitResult.EnsureSuccessful();
-            var commitCount = int.Parse(gitResult.StdOut);
+            //var gitResult = Cmd("git", "rev-list", "--count", "HEAD")
+            //    .CaptureStdOut()
+            //    .Execute();
+            //gitResult.EnsureSuccessful();
+            //var commitCount = int.Parse(gitResult.StdOut);
 
-            gitResult = Cmd("git", "rev-parse", "HEAD")
-                .CaptureStdOut()
-                .Execute();
-            gitResult.EnsureSuccessful();
-            var commitHash = gitResult.StdOut.Trim();
+            //gitResult = Cmd("git", "rev-parse", "HEAD")
+            //    .CaptureStdOut()
+            //    .Execute();
+            //gitResult.EnsureSuccessful();
+            //var commitHash = gitResult.StdOut.Trim();
 
             var branchInfo = ReadBranchInfo(c, Path.Combine(c.BuildContext.BuildDirectory, "branchinfo.txt"));
             var buildVersion = new BuildVersion()
@@ -65,7 +65,7 @@ namespace Microsoft.DotNet.Cli.Build
                 CommitCount = commitCount
             };
             c.BuildContext["BuildVersion"] = buildVersion;
-            c.BuildContext["CommitHash"] = commitHash;
+            c.BuildContext["CommitHash"] = "1234";// commitHash;
 
             c.Info($"Building Version: {buildVersion.SimpleVersion} (NuGet Packages: {buildVersion.NuGetVersion})");
             c.Info($"From Commit: {commitHash}");
