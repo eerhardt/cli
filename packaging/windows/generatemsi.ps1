@@ -30,7 +30,7 @@ function AcquireWixTools
     }
     else
     {
-        $result = Join-Path $result WiX\3.10.0.2103-pre1\tools
+        $result = Join-Path $result WiX\3.10.1\tools
     }
 
     popd

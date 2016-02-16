@@ -4,7 +4,7 @@
   },
 
   "dependencies": {
-    "WiX": "3.10.0.2103-pre1"
+    "WiX": "3.10.1"
   },
 
   "frameworks": {
