@@ -24,4 +24,4 @@ RUN DEL C:\vs.exe
 RUN setx /M PATH "%PATH%;C:\Program Files\Git\cmd;C:\Program Files (x86)\CMake\bin"
 
 # Set working directory
-WORKDIR /opt/code/cli
+WORKDIR D:/

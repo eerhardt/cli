@@ -43,17 +43,17 @@ namespace Microsoft.DotNet.Cli.Build
         [Target]
         public static BuildTargetResult GenerateVersions(BuildTargetContext c)
         {
-            //var gitResult = Cmd("git", "rev-list", "--count", "HEAD")
-            //    .CaptureStdOut()
-            //    .Execute();
-            //gitResult.EnsureSuccessful();
-            var commitCount = 1750;// int.Parse(gitResult.StdOut);
+            var gitResult = Cmd("git", "rev-list", "--count", "HEAD")
+                .CaptureStdOut()
+                .Execute();
+            gitResult.EnsureSuccessful();
+            var commitCount = int.Parse(gitResult.StdOut);
 
-            //gitResult = Cmd("git", "rev-parse", "HEAD")
-            //    .CaptureStdOut()
-            //    .Execute();
-            //gitResult.EnsureSuccessful();
-            var commitHash = "1234";// gitResult.StdOut.Trim();
+            gitResult = Cmd("git", "rev-parse", "HEAD")
+                .CaptureStdOut()
+                .Execute();
+            gitResult.EnsureSuccessful();
+            var commitHash = gitResult.StdOut.Trim();
 
             var branchInfo = ReadBranchInfo(c, Path.Combine(c.BuildContext.BuildDirectory, "branchinfo.txt"));
             var buildVersion = new BuildVersion()
