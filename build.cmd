@@ -9,7 +9,7 @@ set ComPlus_ReadyToRun=0
 IF DEFINED CI_BUILD (
 	set scriptFile=docker\dockerbuild.ps1
 ) ELSE (
-	set scriptFile=build\run-build.ps1
+	set scriptFile=run-build.ps1
 )
 
 powershell -NoProfile -NoLogo -Command "%~dp0scripts\%scriptFile% %*; exit $LastExitCode;"
