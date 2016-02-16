@@ -47,13 +47,13 @@ namespace Microsoft.DotNet.Cli.Build
             //    .CaptureStdOut()
             //    .Execute();
             //gitResult.EnsureSuccessful();
-            //var commitCount = int.Parse(gitResult.StdOut);
+            var commitCount = 1750;// int.Parse(gitResult.StdOut);
 
             //gitResult = Cmd("git", "rev-parse", "HEAD")
             //    .CaptureStdOut()
             //    .Execute();
             //gitResult.EnsureSuccessful();
-            //var commitHash = gitResult.StdOut.Trim();
+            var commitHash = "1234";// gitResult.StdOut.Trim();
 
             var branchInfo = ReadBranchInfo(c, Path.Combine(c.BuildContext.BuildDirectory, "branchinfo.txt"));
             var buildVersion = new BuildVersion()
@@ -65,7 +65,7 @@ namespace Microsoft.DotNet.Cli.Build
                 CommitCount = commitCount
             };
             c.BuildContext["BuildVersion"] = buildVersion;
-            c.BuildContext["CommitHash"] = "1234";// commitHash;
+            c.BuildContext["CommitHash"] = commitHash;
 
             c.Info($"Building Version: {buildVersion.SimpleVersion} (NuGet Packages: {buildVersion.NuGetVersion})");
             c.Info($"From Commit: {commitHash}");
