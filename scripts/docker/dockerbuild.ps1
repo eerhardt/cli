@@ -1,10 +1,9 @@
-## Copyright (c) .NET Foundation and contributors. All rights reserved.
+# Copyright (c) .NET Foundation and contributors. All rights reserved.
 # Licensed under the MIT license. See LICENSE file in the project root for full license information.
 #
 
 . "$PSScriptRoot\..\common\_common.ps1"
 
-cd $REPOROOT
 setVarIfDefault "DOTNET_BUILD_CONTAINER_TAG" "dotnetcli-build"
 setVarIfDefault "DOTNET_BUILD_CONTAINER_NAME" "dotnetcli-build-container"
 setVarIfDefault "DOCKER_HOST_SHARE_DIR" "$(Convert-Path .)"
