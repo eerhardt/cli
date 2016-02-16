@@ -7,10 +7,10 @@
 
 setVarIfDefault "DOTNET_BUILD_CONTAINER_TAG" "dotnetcli-build"
 setVarIfDefault "DOTNET_BUILD_CONTAINER_NAME" "dotnetcli-build-container"
-setVarIfDefault "DOCKER_HOST_SHARE_DIR" "$(Convert-Path .)"
+setVarIfDefault "DOCKER_HOST_SHARE_DIR" "$(Convert-Path ..)"
 setVarIfDefault "DOCKER_CONTAINER_SHARE_DIR" "C:\opt\code"
 setVarIfDefault "DOCKER_OS" "Windows"
-setVarIfDefault "BUILD_COMMAND" "/opt/code/scripts/run-build.ps1"
+setVarIfDefault "BUILD_COMMAND" "/opt/code/cli/scripts/run-build.ps1"
 
 # Build the docker container (will be fast if it is already built)
 header "Building Docker Container"
