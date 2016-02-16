@@ -16,20 +16,12 @@ RUN powershell.exe invoke-webrequest https://cmake.org/files/v3.4/cmake-3.4.3-wi
 RUN C:\cmake.exe /S
 RUN DEL C:\cmake.exe
 
-# Install VS 2015 Community Update 1
+# Install C++ VS 2015 Community Update 1
 RUN powershell.exe invoke-webrequest http://download.microsoft.com/download/5/7/A/57A99666-126E-42FA-8E70-862EDBADD215/vs_community.exe -Outfile c:\vs.exe
 RUN powershell.exe Start-Process C:\vs.exe -ArgumentList ('/q', '/norestart', '/InstallSelectableItems', 'NativeLanguageSupport_VC') -Wait
 RUN DEL C:\vs.exe
 
-# Install .NET 3.5
-RUN powershell.exe invoke-webrequest https://download.microsoft.com/download/7/0/3/703455ee-a747-4cc8-bd3e-98a615c3aedb/dotNetFx35setup.exe -Outfile C:\net.exe
-RUN powershell.exe Start-Process C:\net.exe -ArgumentList ('/quiet', '/norestart') -Wait
-RUN DEL C:\net.exe
-
-ENV PATH "C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files (x86)\CMake\bin"
-
-# Set the NUGET_PACKAGES cache so they aren't downloaded every run
-ENV NUGET_PACKAGES C:\packages
+RUN setx /M PATH "%PATH%;C:\Program Files\Git\cmd;C:\Program Files (x86)\CMake\bin"
 
 # Set working directory
-WORKDIR C:\opt\code
+WORKDIR /opt/code
