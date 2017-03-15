@@ -160,15 +160,9 @@
   <Target Name="CrossgenPublishDir"
           Condition=" '$(DISABLE_CROSSGEN)' == '' "
           AfterTargets="PublishMSBuildExtensions">
-    <ItemGroup>
-      <NETCore10Assemblies Include="$(PublishDir)/System.ComponentModel.Primitives.dll;
-                                    $(PublishDir)/System.Collections.Specialized.dll;
-                                    $(PublishDir)/System.Collections.NonGeneric.dll;
-                                    $(PublishDir)/System.Private.DataContractSerialization.dll" />
-    </ItemGroup>
 
     <ItemGroup>
-      <SdkFiles Include="$(PublishDir)/**/*" Exclude="$(PublishDir)/TestPlatform/**/*;$(PublishDir)/Sdks/**/*;" />
+      <SdkFiles Include="$(PublishDir)/**/*" Exclude="$(PublishDir)/TestPlatform*/**/*;$(PublishDir)/Sdks/**/*" />
     </ItemGroup>
 
     <AddMetadataIsPE Items="@(SdkFiles)">
@@ -196,10 +190,6 @@
               PlatformAssemblyPaths="@(PlatformAssemblies);
                                      @(PublishDirSubDirectories);
                                      $(SharedFrameworkNameVersionPath)" />
-
-    <!-- Move the "1.0" assemblies back -->
-    <Move SourceFiles="@(NETCore10Assemblies->'$(PublishDir)/%(Filename)%(Extension).bak')"
-          DestinationFiles="@(NETCore10Assemblies)" />
   </Target>
 
   <Target Name="RemoveVbc"
